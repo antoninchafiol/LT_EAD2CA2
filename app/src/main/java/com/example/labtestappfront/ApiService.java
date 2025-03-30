@@ -28,6 +28,6 @@ public interface ApiService {
     Call<TestRecord> updateRecord(@Path("id") int id, @Body TestRecord record);
 
     // Delete a record
-    @DELETE("records/{id}")
+    @DELETE("{id}")
     Call<Void> deleteRecord(@Path("id") int id);
 }

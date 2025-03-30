@@ -43,11 +43,10 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        rvAdapter = new TestRecordRVAdapter(new ArrayList<>());
-        recyclerView.setAdapter(rvAdapter);
-
         apiService = ApiClient.getClient().create(ApiService.class);
 
+        rvAdapter = new TestRecordRVAdapter(new ArrayList<>(), apiService);
+        recyclerView.setAdapter(rvAdapter);
         // Set listeners
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
