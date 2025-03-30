@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">LabTestAppFront</string>
+    <string name="app_description">This app allows you to search and manage your health records. Search all public records, or search yours with your ID. you can add/update or delete information from this records.</string>
+    <string name="search_hint">Enter ID (or leave blank for all)</string>
+    <string name="button_search">Search</string>
+    <string name="fb_description">Add new record</string>
+
+    <string name="delete_button">Delete</string>
+    <string name="update_button">Update</string>
+
+    <string name="add_etPatient">Patient Name</string>
+    <string name="add_etTestType">Test Type</string>
+    <string name="add_etDate">Test Date (YYYY-MM-DD)</string>
+    <string name="add_etResult">Result</string>
+    <string name="add_button">Add Record</string>
+
+    <string name="result_Rv">Result</string>
 </resources>

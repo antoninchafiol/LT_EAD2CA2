@@ -3,6 +3,7 @@ package com.example.labtestappfront;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Toast;
+import android.content.Intent;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
@@ -13,6 +14,8 @@ import java.util.Locale;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+
 public class TestRecordRVAdapter extends RecyclerView.Adapter<TestRecordRVAdapter.ViewHolder> {
 
     private List<TestRecord> records;
@@ -76,6 +79,7 @@ public class TestRecordRVAdapter extends RecyclerView.Adapter<TestRecordRVAdapte
                 }
             });
         });
+
     }
 
     @Override
