@@ -8,30 +8,92 @@
 
     <LinearLayout
         android:padding="16dp"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/tvPatientName"
-            android:textStyle="bold"
-            android:textSize="18sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+        <!-- Left Side: Text Details -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tvTestType"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            <!-- ID & Name on the same line -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
 
-        <TextView
-            android:id="@+id/tvTestDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/tvPatientId"
+                    android:text="ID: "
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingEnd="8dp"/>
 
-        <TextView
-            android:id="@+id/tvResult"
+                <TextView
+                    android:id="@+id/tvPatientName"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvTestDate"
+                android:text="Date: "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="4dp"/>
+
+            <TextView
+                android:id="@+id/tvTestType"
+                android:text="Type: "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="4dp"/>
+
+            <TextView
+                android:id="@+id/tvResult"
+                android:text="Result: "
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="4dp"/>
+
+        </LinearLayout>
+
+        <!-- Right Side: Stacked Buttons -->
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/btnUpdate"
+                android:text="Update"
+                android:textSize="14sp"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:backgroundTint="@android:color/holo_blue_dark"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="8dp"/>
+
+            <Button
+                android:id="@+id/btnDelete"
+                android:text="Delete"
+                android:textSize="14sp"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:backgroundTint="@android:color/holo_red_dark"
+                android:textColor="@android:color/white"/>
+        </LinearLayout>
+
     </LinearLayout>
 </androidx.cardview.widget.CardView>

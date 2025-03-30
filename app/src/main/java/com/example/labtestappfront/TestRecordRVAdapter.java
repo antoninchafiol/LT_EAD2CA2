@@ -32,10 +32,17 @@ public class TestRecordRVAdapter extends RecyclerView.Adapter<TestRecordRVAdapte
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         TestRecord record = records.get(position);
+        String newstringID = "ID: " + record.getId() + " - ";
+        holder.tvId.setText(newstringID);
         holder.tvPatientName.setText(record.getPatientName());
-        holder.tvTestType.setText(record.getTestType());
-        holder.tvTestDate.setText(dateFormat.format(record.getTestDate()));
-        holder.tvResult.setText(record.getResult());
+
+        String newTestType = "Type: " + record.getTestType();
+        String newDate = "Date: " + dateFormat.format(record.getTestDate());
+        String newResult = "Result: " + record.getResult();
+
+        holder.tvTestType.setText(newTestType);
+        holder.tvTestDate.setText(newDate);
+        holder.tvResult.setText(newResult);
     }
 
     @Override
@@ -44,7 +51,7 @@ public class TestRecordRVAdapter extends RecyclerView.Adapter<TestRecordRVAdapte
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView tvPatientName, tvTestType, tvTestDate, tvResult;
+        public TextView tvPatientName, tvTestType, tvTestDate, tvResult, tvId;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -52,6 +59,7 @@ public class TestRecordRVAdapter extends RecyclerView.Adapter<TestRecordRVAdapte
             tvTestType = itemView.findViewById(R.id.tvTestType);
             tvTestDate = itemView.findViewById(R.id.tvTestDate);
             tvResult = itemView.findViewById(R.id.tvResult);
+            tvId = itemView.findViewById(R.id.tvPatientId);
         }
     }
 }
