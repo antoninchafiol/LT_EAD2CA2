@@ -13,6 +13,11 @@
     <string name="add_etDate">Test Date (YYYY-MM-DD)</string>
     <string name="add_etResult">Result</string>
     <string name="add_button">Add Record</string>
-
+    <string-array name="sort_options">
+        <item>Patient Name (A-Z)</item>
+        <item>Patient Name (Z-A)</item>
+        <item>Test Date (Newest First)</item>
+        <item>Test Date (Oldest First)</item>
+    </string-array>
     <string name="result_Rv">Result</string>
 </resources>

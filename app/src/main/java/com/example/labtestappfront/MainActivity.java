@@ -12,13 +12,17 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.widget.AdapterView;
+import android.widget.Spinner;
 import android.widget.ImageButton;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Comparator;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -47,6 +51,31 @@ public class MainActivity extends AppCompatActivity {
 
         rvAdapter = new TestRecordRVAdapter(new ArrayList<>(), apiService);
         recyclerView.setAdapter(rvAdapter);
+
+        Spinner spinnerSort = findViewById(R.id.spinnerSort);
+        spinnerSort.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                switch (position) {
+                    case 0:
+                        rvAdapter.sortRecords(Comparator.comparing(TestRecord::getPatientName));
+                        break;
+                    case 1:
+                        rvAdapter.sortRecords(Comparator.comparing(TestRecord::getPatientName).reversed());
+                        break;
+                    case 2:
+                        rvAdapter.sortRecords(Comparator.comparing(TestRecord::getTestDate).reversed());
+                        break;
+                    case 3:
+                        rvAdapter.sortRecords(Comparator.comparing(TestRecord::getTestDate));
+                        break;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) { }
+        });
+
         // Set listeners
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     try {
                         int id = Integer.parseInt(searchText);
+                        Log.w("myApp", "no network");
                         fetchRecordById(id);
                     } catch (NumberFormatException e) {
                         Toast.makeText(MainActivity.this, "Invalid ID, should be number only", Toast.LENGTH_SHORT).show();
@@ -77,6 +107,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<TestRecord>> call, Response<List<TestRecord>> response) {
                 if (response.isSuccessful() && response.body() != null) {
+                    Log.w("myApp", "RV Adapter Add");
                     rvAdapter.setRecords(response.body());
                 } else {
                     Toast.makeText(MainActivity.this, "No records found", Toast.LENGTH_SHORT).show();

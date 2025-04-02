@@ -1,7 +1,9 @@
 package com.example.labtestappfront;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.util.Log;
 import android.widget.Toast;
 import android.content.Intent;
 import android.view.ViewGroup;
@@ -15,7 +17,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-
+import java.util.Collections;
+import java.util.Comparator;
 public class TestRecordRVAdapter extends RecyclerView.Adapter<TestRecordRVAdapter.ViewHolder> {
 
     private List<TestRecord> records;
@@ -29,6 +32,7 @@ public class TestRecordRVAdapter extends RecyclerView.Adapter<TestRecordRVAdapte
 
     public void setRecords(List<TestRecord> records) {
         this.records = records;
+        Log.w("myApp", "RV Adapter Add");
         notifyDataSetChanged();
     }
 
@@ -87,9 +91,13 @@ public class TestRecordRVAdapter extends RecyclerView.Adapter<TestRecordRVAdapte
         return records != null ? records.size() : 0;
     }
 
+    public void sortRecords(Comparator<TestRecord> comparator) {
+        Collections.sort(records, comparator);
+        notifyDataSetChanged();
+    }
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView tvPatientName, tvTestType, tvTestDate, tvResult, tvId;
-        public Button btnUpdate, btnDelete;
+        public Button btnDelete;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -98,7 +106,6 @@ public class TestRecordRVAdapter extends RecyclerView.Adapter<TestRecordRVAdapte
             tvTestDate = itemView.findViewById(R.id.tvTestDate);
             tvResult = itemView.findViewById(R.id.tvResult);
             tvId = itemView.findViewById(R.id.tvPatientId);
-            btnUpdate = itemView.findViewById(R.id.btnUpdate);
             btnDelete = itemView.findViewById(R.id.btnDelete);
         }
     }

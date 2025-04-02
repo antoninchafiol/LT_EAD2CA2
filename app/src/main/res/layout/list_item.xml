@@ -75,22 +75,13 @@
             android:orientation="vertical"
             android:gravity="center">
 
-            <Button
-                android:id="@+id/btnUpdate"
-                android:text="@string/update_button"
-                android:textSize="14sp"
-                android:layout_width="wrap_content"
-                android:layout_height="48dp"
-                android:backgroundTint="@android:color/holo_blue_dark"
-                android:textColor="@android:color/white"
-                android:layout_marginBottom="8dp"/>
 
             <Button
                 android:id="@+id/btnDelete"
                 android:text="@string/delete_button"
                 android:textSize="14sp"
-                android:layout_width="wrap_content"
-                android:layout_height="48dp"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
                 android:backgroundTint="@android:color/holo_red_dark"
                 android:textColor="@android:color/white"/>
         </LinearLayout>
