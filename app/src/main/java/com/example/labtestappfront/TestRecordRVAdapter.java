@@ -49,16 +49,12 @@ public class TestRecordRVAdapter extends RecyclerView.Adapter<TestRecordRVAdapte
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         TestRecord record = records.get(position);
-        String newstringID = "ID: " + record.getId() + " - ";
-        holder.tvId.setText(newstringID);
-        holder.tvPatientName.setText(record.getPatientName());
-
-        String newTestType = "Type: " + record.getTestType();
-        String newDate = "Date: " + dateFormat.format(record.getTestDate());
+        String newPatientInfo = "ID: " + record.getId() + " | " + record.getPatientName();
+        String newDetails = "Date: " + dateFormat.format(record.getTestDate()) + " | " + "Type: " + record.getTestType();
         String newResult = "Result: " + record.getResult();
 
-        holder.tvTestType.setText(newTestType);
-        holder.tvTestDate.setText(newDate);
+        holder.tvPatientInfo.setText(newPatientInfo);
+        holder.tvTestDetails.setText(newDetails);
         holder.tvResult.setText(newResult);
 
         holder.btnDelete.setOnClickListener(x -> {
@@ -96,16 +92,14 @@ public class TestRecordRVAdapter extends RecyclerView.Adapter<TestRecordRVAdapte
         notifyDataSetChanged();
     }
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView tvPatientName, tvTestType, tvTestDate, tvResult, tvId;
+        public TextView tvPatientInfo, tvTestDetails, tvResult;
         public Button btnDelete;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            tvPatientName = itemView.findViewById(R.id.tvPatientName);
-            tvTestType = itemView.findViewById(R.id.tvTestType);
-            tvTestDate = itemView.findViewById(R.id.tvTestDate);
+            tvPatientInfo = itemView.findViewById(R.id.tvPatientInfo);
+            tvTestDetails = itemView.findViewById(R.id.tvTestDetails);
             tvResult = itemView.findViewById(R.id.tvResult);
-            tvId = itemView.findViewById(R.id.tvPatientId);
             btnDelete = itemView.findViewById(R.id.btnDelete);
         }
     }
