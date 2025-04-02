@@ -1,18 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">LabTestAppFront</string>
-    <string name="app_description">Cette application vous permet de rechercher et de gérer vos dossiers de santé. Recherchez tous les dossiers publics, ou recherchez les vôtres avec votre ID. Vous pouvez ajouter, mettre à jour ou supprimer des informations de ces dossiers.</string>
-    <string name="search_hint">Entrez l\'ID (ou laissez vide pour tous)</string>
+    <string name="app_description">Cette application vous permet de rechercher et de gérer vos dossiers de santé. Recherchez tous les dossiers publics ou recherchez les vôtres avec votre ID. Vous pouvez ajouter, mettre à jour ou supprimer des informations dans ces dossiers.</string>
+    <string name="search_hint">Entrez l ID (ou laissez vide pour tout)</string>
     <string name="button_search">Rechercher</string>
+    <string name="fb_description">Ajouter un nouveau dossier</string>
+
     <string name="delete_button">Supprimer</string>
     <string name="update_button">Mettre à jour</string>
-    <string name="fb_description">Ajouter un dossier</string>
 
     <string name="add_etPatient">Nom du patient</string>
     <string name="add_etTestType">Type de test</string>
     <string name="add_etDate">Date du test (AAAA-MM-JJ)</string>
     <string name="add_etResult">Résultat</string>
     <string name="add_button">Ajouter un dossier</string>
-
+    <string-array name="sort_options">
+        <item>Nom du patient (A-Z)</item>
+        <item>Nom du patient (Z-A)</item>
+        <item>Date du test (Le plus récent en premier)</item>
+        <item>Date du test (Le plus ancien en premier)</item>
+        <item>Type (A-Z)</item>
+        <item>Type (Z-A)</item>
+    </string-array>
     <string name="result_Rv">Résultat</string>
 </resources>
+
