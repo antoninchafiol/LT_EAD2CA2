@@ -1,9 +1,12 @@
 package com.example.labtestappfront;
 
+import static java.security.AccessController.getContext;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 import androidx.appcompat.widget.Toolbar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -92,10 +95,9 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     try {
                         int id = Integer.parseInt(searchText);
-                        Log.w("myApp", "no network");
                         fetchRecordById(id);
                     } catch (NumberFormatException e) {
-                        Toast.makeText(MainActivity.this, "Invalid ID, should be number only", Toast.LENGTH_SHORT).show();
+                        CustomToast.showToast(MainActivity.this, "Invalid ID, should be number only", CustomToast.ToastType.ERROR);
                     }
                 }
             }
@@ -113,15 +115,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<TestRecord>> call, Response<List<TestRecord>> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    Log.w("myApp", "RV Adapter Add");
                     rvAdapter.setRecords(response.body());
                 } else {
-                    Toast.makeText(MainActivity.this, "No records found", Toast.LENGTH_SHORT).show();
+                    CustomToast.showToast(MainActivity.this, "No records found", CustomToast.ToastType.WARNING);
                 }
             }
             @Override
             public void onFailure(Call<List<TestRecord>> call, Throwable t) {
-                Toast.makeText(MainActivity.this, "Error fetching records", Toast.LENGTH_SHORT).show();
+                CustomToast.showToast(MainActivity.this, "Error fetching records", CustomToast.ToastType.ERROR);
             }
         });
     }
@@ -135,12 +136,12 @@ public class MainActivity extends AppCompatActivity {
                     singleRecord.add(response.body());
                     rvAdapter.setRecords(singleRecord);
                 } else {
-                    Toast.makeText(MainActivity.this, "Record not found", Toast.LENGTH_SHORT).show();
+                    CustomToast.showToast(MainActivity.this, "No records found", CustomToast.ToastType.WARNING);
                 }
             }
             @Override
             public void onFailure(Call<TestRecord> call, Throwable t) {
-                Toast.makeText(MainActivity.this, "Error fetching record", Toast.LENGTH_SHORT).show();
+                CustomToast.showToast(MainActivity.this, "Error fetching record", CustomToast.ToastType.ERROR);
             }
         });
     }

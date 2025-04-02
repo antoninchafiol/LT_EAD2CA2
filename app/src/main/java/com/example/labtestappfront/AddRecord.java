@@ -64,21 +64,21 @@ public class AddRecord extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<TestRecord> call, Response<TestRecord> response) {
                     if (response.isSuccessful()) {
-                        Toast.makeText(AddRecord.this, "Record added!", Toast.LENGTH_SHORT).show();
+                        CustomToast.showToast(AddRecord.this, "Record added!", CustomToast.ToastType.SUCCESS);
                         finish();
                     } else {
-                        Toast.makeText(AddRecord.this, "Failed to add record", Toast.LENGTH_SHORT).show();
+                        CustomToast.showToast(AddRecord.this, "Failed to add record", CustomToast.ToastType.WARNING);
                     }
                 }
 
                 @Override
                 public void onFailure(Call<TestRecord> call, Throwable t) {
-                    Toast.makeText(AddRecord.this, "Error: " + t.getMessage(), Toast.LENGTH_LONG).show();
+                    CustomToast.showToast(AddRecord.this, "Error: " + t.getMessage(), CustomToast.ToastType.ERROR);
                 }
             });
 
         } catch (Exception e) {
-            Toast.makeText(this, "Invalid date format! Use YYYY-MM-DD", Toast.LENGTH_SHORT).show();
+            CustomToast.showToast(AddRecord.this, "Invalid date format! Use YYYY-MM-DD", CustomToast.ToastType.ERROR);
         }
     }
 }
