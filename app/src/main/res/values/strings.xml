@@ -18,6 +18,8 @@
         <item>Patient Name (Z-A)</item>
         <item>Test Date (Newest First)</item>
         <item>Test Date (Oldest First)</item>
+        <item>Type (A-Z)</item>
+        <item>Type (Z-A)</item>
     </string-array>
     <string name="result_Rv">Result</string>
 </resources>

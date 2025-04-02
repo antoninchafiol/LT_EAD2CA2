@@ -69,6 +69,12 @@ public class MainActivity extends AppCompatActivity {
                     case 3:
                         rvAdapter.sortRecords(Comparator.comparing(TestRecord::getTestDate));
                         break;
+                    case 4:
+                        rvAdapter.sortRecords(Comparator.comparing(TestRecord::getTestType));
+                        break;
+                    case 5:
+                        rvAdapter.sortRecords(Comparator.comparing(TestRecord::getTestType).reversed());
+                        break;
                 }
             }
 
