@@ -23,10 +23,6 @@ public interface ApiService {
     @POST(".")
     Call<TestRecord> createRecord(@Body TestRecord record);
 
-    // Update an existing record
-    @PUT("records/{id}")
-    Call<TestRecord> updateRecord(@Path("id") int id, @Body TestRecord record);
-
     // Delete a record
     @DELETE("{id}")
     Call<Void> deleteRecord(@Path("id") int id);
