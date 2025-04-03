@@ -3,13 +3,16 @@ package com.example.labtestappfront;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.util.Log;
 import android.widget.Toast;
-import android.content.Intent;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.test.espresso.UiController;
+import androidx.test.espresso.ViewAction;
+
+import org.hamcrest.Matcher;
+
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
@@ -19,6 +22,7 @@ import retrofit2.Response;
 
 import java.util.Collections;
 import java.util.Comparator;
+
 public class TestRecordRVAdapter extends RecyclerView.Adapter<TestRecordRVAdapter.ViewHolder> {
 
     private List<TestRecord> records;
@@ -102,5 +106,27 @@ public class TestRecordRVAdapter extends RecyclerView.Adapter<TestRecordRVAdapte
             tvResult = itemView.findViewById(R.id.tvResult);
             btnDelete = itemView.findViewById(R.id.btnDelete);
         }
+    }
+
+    public static ViewAction clickChildViewWithId(final int id) {
+        return new ViewAction() {
+            @Override
+            public Matcher<View> getConstraints() {
+                return null;
+            }
+
+            @Override
+            public String getDescription() {
+                return "Click on a child view with specified ID.";
+            }
+
+            @Override
+            public void perform(UiController uiController, View view) {
+                View childView = view.findViewById(id);
+                if (childView != null) {
+                    childView.performClick();
+                }
+            }
+        };
     }
 }

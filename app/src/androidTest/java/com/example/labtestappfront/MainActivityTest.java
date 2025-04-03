@@ -1,20 +1,12 @@
 package com.example.labtestappfront;
 
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.test.espresso.action.ViewActions;
-import androidx.test.espresso.matcher.ViewMatchers;
-import androidx.test.espresso.intent.Intents;
-import androidx.test.espresso.Espresso;
 import androidx.test.espresso.contrib.RecyclerViewActions;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
 
-import com.example.labtestappfront.MainActivity;
-import com.example.labtestappfront.R;
-
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -27,8 +19,11 @@ import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withSpinnerText;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
+import static com.example.labtestappfront.TestRecordRVAdapter.clickChildViewWithId;
+
 import android.util.Log;
-import android.view.View;
+
+import java.util.concurrent.atomic.AtomicInteger;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
@@ -146,4 +141,56 @@ public class MainActivityTest {
         onView(withId(R.id.spinnerSort)).check(matches(withSpinnerText("Patient Name (Z-A)")));
     }
 
+    @Test
+    public void testDeleteItemFromRecyclerview() {
+        onView(withId(R.id.btnSearch)).perform(click());
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        AtomicInteger count = new AtomicInteger();
+        activityRule.getScenario().onActivity(activity -> {
+            RecyclerView recyclerView = null;
+            TestRecordRVAdapter adapter = null;
+            while (adapter == null) {
+                recyclerView = activity.findViewById(R.id.recyclerView);
+                adapter = (TestRecordRVAdapter) recyclerView.getAdapter();
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            count.set(adapter.getItemCount());
+            Assert.assertTrue(adapter.getItemCount() >= 1);
+        });
+
+        onView(withId(R.id.recyclerView))
+                .perform(RecyclerViewActions.actionOnItemAtPosition(0, clickChildViewWithId(R.id.btnDelete)));
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+        activityRule.getScenario().onActivity(activity -> {
+            RecyclerView recyclerView = null;
+            TestRecordRVAdapter adapter = null;
+            while (adapter == null) {
+                recyclerView = activity.findViewById(R.id.recyclerView);
+                adapter = (TestRecordRVAdapter) recyclerView.getAdapter();
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            Assert.assertTrue(adapter.getItemCount() < count.get());
+        });
+
+
+
+    }
 }
